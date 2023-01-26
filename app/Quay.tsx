@@ -4,8 +4,9 @@ import { enturClient } from "@/apollo-client";
 import { gql, useQuery } from "@apollo/client";
 import { differenceInMinutes } from "date-fns";
 
+// id format: NSR:Quay:10319
 function getQuayStopGql(ids: string[]) {
-  const idString = "[" + ids.map((id) => `"NSR:Quay:${id}"`).join(", ") + "]";
+  const idString = "[" + ids.map((id) => `"${id}"`).join(", ") + "]";
   console.log(idString);
   return gql`
     {
@@ -125,18 +126,19 @@ interface Props {
 }
 
 export function Quay(props: Props) {
-  const { data: VestreHaugenQuayData } = useQuery(
-    getQuayStopGql(["10319", "10320"]),
+  const { data: quayData } = useQuery(
+    // getQuayStopGql(["10319", "10320"]),
+    getQuayStopGql(props.quayIds),
     {
       client: enturClient,
     }
   );
 
-  console.log("VestreHaugenQuayData", VestreHaugenQuayData);
+  // console.log("VestreHaugenQuayData", VestreHaugenQuayData);
 
   return (
     <div className="flex flex-row">
-      {VestreHaugenQuayData?.quays.map((quay: any, index: number) => (
+      {quayData?.quays.map((quay: any, index: number) => (
         <div key={quay.id} className="flex flex-col m-4">
           <h1 className="font-bold text-center mb-2">
             {quay.name} {index + 1}

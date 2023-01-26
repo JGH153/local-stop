@@ -57,7 +57,8 @@ function getStopPlaceGql(id: string) {
 
 export default function Demo() {
   // const { data, loading, error } = enturClient.query({
-  const { data: VestreHaugenData } = useQuery(getStopPlaceGql("5634"), {
+  // const { data: VestreHaugenData } = useQuery(getStopPlaceGql("5634"), {
+  const { data: VestreHaugenData } = useQuery(getStopPlaceGql("359"), {
     client: enturClient,
   });
 
@@ -104,9 +105,26 @@ export default function Demo() {
         );
       })}
       <h1>Quays</h1> */}
+      {/* {VestreHaugenData && (
+        <Quay
+          quayIds={VestreHaugenData?.stopPlace.quays.map(
+            (quay: any) => quay.id
+          )}
+        />
+      )} */}
+      {/*Vestre Haugen */}
+      <Quay quayIds={["NSR:Quay:10319", "NSR:Quay:10320"]} />
+      {/*Stjerneblokkveien */}
       <Quay
-        quayIds={VestreHaugenData?.stopPlace.quays.map((quay: any) => quay.id)}
+        quayIds={[
+          "NSR:Quay:10327",
+          // "NSR:Quay:10326",
+          // "NSR:Quay:10325",
+          "NSR:Quay:102928",
+        ]}
       />
+      {/*Gransletta  */}
+      <Quay quayIds={["NSR:Quay:10317", "NSR:Quay:10316"]} />
     </div>
   );
 }
