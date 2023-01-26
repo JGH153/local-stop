@@ -139,7 +139,7 @@ export function Quay(props: Props) {
   return (
     <div className="flex flex-row">
       {quayData?.quays.map((quay: any, index: number) => (
-        <div key={quay.id} className="flex flex-col m-4">
+        <div key={quay.id} className="flex flex-col m-2">
           <h1 className="font-bold text-center mb-2">
             {quay.name} {index + 1}
           </h1>
